@@ -1,4 +1,5 @@
 import React from 'react';
+import { Btn } from "./style"
 
 interface IProps {
     content: string;
@@ -6,9 +7,9 @@ interface IProps {
 
 const Button: React.FC<IProps> = ({content}) => {
     return (
-        <div>
+        <Btn>
             <button>{content}</button>
-        </div>
+        </Btn>
     )
 }
 

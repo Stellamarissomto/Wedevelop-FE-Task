@@ -1,4 +1,5 @@
 import React from 'react';
+import { Inner, Category, Outter } from "./style"
 
 interface IProps {
     image: string,
@@ -9,17 +10,18 @@ interface IProps {
 
 const Books: React.FC<IProps> = ({image, title, author,category}) => {
     return (
-        <div>
-            <div>
+        <Outter>
+            <Inner>
                 <img src={image} alt="book" />
                 <h4>{title}</h4>
                 <p>{author}</p>
-                <div>
+                <Category>
                     <p>{category}</p>
-                </div>
-            </div>
+                </Category>
+            </Inner>
             
-        </div>
+        </Outter>
+        
     )
 }
 
