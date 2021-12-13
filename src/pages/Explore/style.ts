@@ -6,7 +6,7 @@ export const Head = styled.div`
 display: flex;
 flex-direction: row;
 gap:  ${px2vw(54, 414)};
-
+ 
 h1 {
 
 font-family: Source Sans Pro;
@@ -125,8 +125,11 @@ color: #000000;
 `
 
 export const BookSection = styled.div`
-display: grid;
-grid-template-columns: repeat(3, 1fr);
 
+@media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
 
 `

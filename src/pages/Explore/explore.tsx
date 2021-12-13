@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom'
 import Button from "../../component/Button";
 import Books from "../../component/Books";
-import { images } from "../../images"
+import { images } from "../../images";
 import { Head, Page, Section, BookSection } from "./style"
+import { useSelector, useDispatch } from "react-redux";
+import { getBooks } from '../../features/book/bookSlice'
+import { RootState } from '../../app/store';
 
 const Explore: React.FC = () => {
 
-    
+    const dispatch = useDispatch();
+    const { book } = useSelector( (state: RootState) => state.book);
+    console.log(book)
+
+    useEffect(() => {
+        dispatch(getBooks());
+      }, [dispatch]);
+
+
     return (
       <Page>
           <Head>
@@ -19,16 +31,18 @@ const Explore: React.FC = () => {
 
           <Section>
               <h3>Popular Now</h3>
+              <Link to='/favorite'>
               <Button content="Favourite Books"/>
+              </Link>
           </Section>
 
           <BookSection>
-              <Books image={images.magic} title="Magic’s Child" author="The Past Is Rising" category="fiction"/>
-              <Books image={images.thepast} title="jjjj" author="kkkk" category="kkkkkk"/>
-              <Books image={images.cind} title="jjjj" author="kkkk" category="kkkkkk"/>
-              <Books image={images.cind} title="jjjj" author="kkkk" category="kkkkkk"/>
-              <Books image={images.cind} title="jjjj" author="kkkk" category="kkkkkk"/>
-              <Books image={images.cind} title="jjjj" author="kkkk" category="kkkkkk"/>
+              {
+                  book.book && book.book.map((books: any) => (
+                    <Books image={books.image} title={books.title} author={books.author.lastname} category={books.category}/>
+
+                  ))
+              }
           </BookSection>
 
      </Page>
